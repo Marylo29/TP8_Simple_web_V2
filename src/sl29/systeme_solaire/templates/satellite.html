@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ satellite.name }}</title>
+</head>
+<body>
+    <h1>{{ satellite.name }}</h1>
+
+    <h2>Caractéristiques:</h2>
+    <ul>
+        <li>ID: {{ satellite.id }}</li>
+        <li>Diamètre: {{ satellite.diameter }} km</li>
+        <li>Masse: {{ satellite.mass }} × 10<sup>22</sup> kg</li>
+    </ul>
+
+    <h2>Planète:</h2>
+    {% if planet %}
+        <a href="/planete?id={{ planet.id }}">
+        	{{ planet.name }} (ID: {{ planet.id }})
+	</a>
+    {% else %}
+        <p>Aucune planète</p>
+    {% endif %}
+
+    <p><a href="/">Retour à l'accueil</a></p>
+
+    <div style="margin-top: 2em; padding: 1em; background: #f0f0f0;">
+        <h3>Explications:</h3>
+        <p>Cette page montre comment:</p>
+        <ol>
+            <li>Le navigateur envoie une requête avec paramètre (<code>?id={{ satellite.id }}</code>)</li>
+            <li>Flask récupère ce paramètre avec <code>request.args.get()</code></li>
+            <li>Le serveur utilise ce paramètre pour trouver le bon satellite</li>
+        </ol>
+    </div>
+</body>
+</html>

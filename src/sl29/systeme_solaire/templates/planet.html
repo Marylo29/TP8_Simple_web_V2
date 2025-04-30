@@ -34,6 +34,18 @@
 
     <p><a href="/">Retour à l'accueil</a></p>
 
+    {% if previous_planet %}
+    <p><a href="/planete?id={{previous_planet.id}}">Précedent : {{ previous_planet.name }} (ID: {{ previous_planet.id }})</a></p>
+    {% else %}
+    <p>Pas de précedent</p>
+    {% endif %}
+
+    {% if next_planet %}
+    <p><a href="/planete?id={{next_planet.id}}">Suivant : {{ next_planet.name }} (ID: {{ next_planet.id }})</a></p>
+    {% else %}
+    <p>Pas de suivant</p>
+    {% endif %}
+
     <div style="margin-top: 2em; padding: 1em; background: #f0f0f0;">
         <h3>Explications:</h3>
         <p>Cette page montre comment:</p>
