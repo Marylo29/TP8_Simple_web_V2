@@ -2,9 +2,11 @@
 
 import json
 from flask import Flask, render_template, request
-from os import chdir
+from os import chdir,getcwd
 
-chdir("/home/n.collin/Bureau/NSI/TPs/TP8_Simple_web_V2/src/sl29/systeme_solaire")
+if getcwd()[-25:] != "\\src\\sl29\\systeme_solaire":
+    texte = getcwd() + "\\src\\sl29\\systeme_solaire"
+    chdir(texte)
 app = Flask(__name__)
 
 # Chargement des données
