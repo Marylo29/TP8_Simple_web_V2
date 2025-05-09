@@ -16,23 +16,16 @@
     </ul>
 
     <h2>Liste des planètes:</h2>
-    <div class="accordion" id="accordionExample">
+    <ul class="list-group">
         {% for planet in planets %}
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ planet.id }}" aria-expanded="false" aria-controls="collapse{{ planet.id }}">
-                        {{ planet.name }} (ID: {{ planet.id }})
-                    </button>
-                </h2>
-                <div id="collapse{{ planet.id }}" class="accordion-collapse collapse" data-bs-parent="#planetExample">
-                    <div class="accordion-body">
-                        <iframe src="/planete?id={{ planet.id }}" title="{{ planet.name }}"></iframe>
-                    </div>
-                </div>
-            </div>
+            <li class="list-group-item">
+                <a href="/planete?id={{ planet.id }}">
+                    {{ planet.name }} (ID: {{ planet.id }})
+                </a>
+                - Exemple: /planete?id={{ planet.id }}
+            </li>
         {% endfor %}
-    </div>
-
+    </ul>
 
     <div style="margin-top: 2em; padding: 1em; background: #f0f0f0;">
         <h3>Explications pour les élèves:</h3>
@@ -49,5 +42,7 @@
         <input type="number" id="planet_id" name="id" min="1" max="9">
         <button type="submit">Voir la planète</button>
     </form>
+
+    <a href="./index_2.html">Essai</a>
 </body>
 </html>
