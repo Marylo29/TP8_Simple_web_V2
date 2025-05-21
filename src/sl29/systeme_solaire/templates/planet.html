@@ -34,19 +34,22 @@
         <p>Aucun satellite</p>
     {% endif %}
 
-    <p><a href="/">Retour à l'accueil</a></p>
 
-    {% if previous_planet %}
-    <p><a href="/planete?id={{previous_planet.id}}">Précedent : {{ previous_planet.name }} (ID: {{ previous_planet.id }})</a></p>
-    {% else %}
-    <p>Pas de précedent</p>
-    {% endif %}
-
-    {% if next_planet %}
-    <p><a href="/planete?id={{next_planet.id}}">Suivant : {{ next_planet.name }} (ID: {{ next_planet.id }})</a></p>
-    {% else %}
-    <p>Pas de suivant</p>
-    {% endif %}
+    <ul class="pagination justify-content-center">
+        {% if previous_planet %}
+            <li class="page-item"><a class="page-link" href="/planete?id={{previous_planet.id}}">Précedent : {{ previous_planet.name }} (ID: {{ previous_planet.id }})</a>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Pas de Précedent</a>
+        {% endif %}
+        </li>
+        <li class = "page-item"><a class="page-link" href="/">Retour à l'accueil</a></li>
+        {% if next_planet %}
+            <li class="page-item"><a class="page-link" href="/planete?id={{next_planet.id}}">Suivant : {{ next_planet.name }} (ID: {{ next_planet.id }})</a>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Pas de suivant</a>
+        {% endif %}
+        </li>
+    </ul>
 
     <div style="margin-top: 2em; padding: 1em; background: #f0f0f0;">
         <h3>Explications:</h3>

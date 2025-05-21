@@ -3,9 +3,9 @@
 import json
 from flask import Flask, render_template, request
 from os import chdir,getcwd
-
-if getcwd()[-25:] != "\\src\\sl29\\systeme_solaire":
-    texte = getcwd() + "\\src\\sl29\\systeme_solaire"
+print(getcwd())
+if getcwd()[-25:] != "/src/sl29/systeme_solaire":
+    texte = getcwd() + "/src/sl29/systeme_solaire"
     chdir(texte)
 app = Flask(__name__)
 
@@ -42,6 +42,7 @@ def show_planet():
 
     # Récupération des satellites
     planet_satellites = [s for s in satellites if s['planetId'] == planet_id]
+
     previous_planet_id = planet_id-1 if planet_id-1 > 0 else None
     previous_planet = None if previous_planet_id is None else get_planet_by_id(previous_planet_id)
 
@@ -75,12 +76,21 @@ def show_satellite():
 
     # récupérer les données de la planète associée.
     asso_planet = planets[satellite_data["planetId"]-1]
+
+    previous_satellite_id = satellite_id-1 if satellite_id-1 > 0 else None
+    previous_satellite = None if previous_satellite_id is None else get_satellite_by_id(previous_satellite_id)
+
+    next_satellite_id = satellite_id+1 if satellite_id+1 <= len(satellites) else None
+    next_satellite = None if next_satellite_id is None else get_satellite_by_id(next_satellite_id)
     # retourner le template 'satellite.html' avec les variables:
     # - satellite
     # - planet
     return render_template('satellite.html',
                          satellite=satellite_data,
-                         planet = asso_planet)
+                         planet = asso_planet,
+                         previous_satellite = previous_satellite,
+                         next_satellite = next_satellite
+                         )
 
 
 def get_planet_by_id(planet_id:int)->dict|None:

@@ -24,7 +24,21 @@
         <p>Aucune planète</p>
     {% endif %}
 
-    <p><a href="/">Retour à l'accueil</a></p>
+    <ul class="pagination justify-content-center">
+        {% if previous_satellite %}
+            <li class="page-item"><a class="page-link" href="/satellite?id={{previous_satellite.id}}">Précedent : {{ previous_satellite.name }} (ID: {{ previous_satellite.id }})</a>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Pas de Précedent</a>
+        {% endif %}
+        </li>
+        <li class = "page-item"><a class="page-link" href="/">Retour à l'accueil</a></li>
+        {% if next_satellite %}
+            <li class="page-item"><a class="page-link" href="/satellite?id={{next_satellite.id}}">Suivant : {{ next_satellite.name }} (ID: {{ next_satellite.id }})</a>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link" href="#">Pas de suivant</a>
+        {% endif %}
+        </li>
+    </ul>
 
     <div style="margin-top: 2em; padding: 1em; background: #f0f0f0;">
         <h3>Explications:</h3>
